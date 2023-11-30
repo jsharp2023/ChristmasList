@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎄❄ Christmas List ❄🎄</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    
+</head>
+<body>
+<style>body{
+    background-color: red;
+}
+.jumbotron{
+    background-color: green;
+}
+h1{
+    color:greenyellow;
+    text-shadow: 2px 2px 2px rgb(242, 221, 99);
+}
+h2{
+    color:rgb(48, 21, 220);
+    text-shadow: 2px 2px 2px rgb(242, 221, 99);
+}
+p{
+    color:red;
+    text-shadow: 2px 2px 2px rgb(99, 10, 183);
+}
+#taskList{
+    margin: 20px;
+    padding:auto;
+    text-align: center;
+}
+button{
+    position: relative;
+}
+footer{
+    text-align:center;
+}
+
+
+</style>
+    <!-- Jumbotron -->
+    <div class="jumbotron text-center">
+       
+        <h1 class="display-4">Welcom to the North Pole</h1>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/7bUhsg1IaOg?si=bGHpNQADNok1TwLj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <h2 class="lead">🎄Naugty or Nice🎄</h2>
+        <p>❄Lets see if your on thin ICE!❄</p>
+       
+        <!-- This is where the kids name is placed -->
+        <!-- Form to add new tasks -->
+    <form id="todoForm">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" id="taskInput" placeholder="☃ Child Name" required>
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">Submit</button>
+                <!-- List to display tasks -->
+    <ul class="list-group" id="taskList">
+        <!-- Tasks will be added dynamically here -->
+    </ul>
+            </div>
+        </div>
+    </div>
+    </form>
+
+  <!-- Bootstrap JS and dependencies -->
+ <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+ <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+ <script>
+    // Function to create a new list item
+    function createTaskElement(taskText) {
+        let listItem = document.createElement('li');
+        listItem.className = 'list-group-item d-flex justify-content-between align-items-center';
+        listItem.textContent = taskText;
+
+        // Create buttons for completion and deletion
+        let completeButton = document.createElement('button');
+        completeButton.className = 'btn btn-success btn-sm mr-2';
+        completeButton.textContent = '☃ NICE';
+        completeButton.addEventListener('click', function () {
+            listItem.classList.toggle('list-group-item-success'); // Toggle completed style
+        });
+        let deleteButton = document.createElement('button');
+        deleteButton.className = 'btn btn-danger btn-sm';
+        deleteButton.textContent = '⛔ NAUGHTY';
+        deleteButton.addEventListener('click', function () {
+            listItem.remove(); // Remove the task from the list
+        });
+        // Append buttons to the list item
+        listItem.appendChild(completeButton);
+        listItem.appendChild(deleteButton);
+
+        return listItem;
+    }
+
+    // Add event listener for form submission
+    document.getElementById('todoForm').addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        // Get the task input value
+        let taskInput = document.getElementById('taskInput');
+        let taskText = taskInput.value.trim();
+
+        // Check if the input is not empty
+        if (taskText !== '') {
+            // Create a new list item
+            let listItem = createTaskElement(taskText);
+
+            // Append the new task to the task list
+            document.getElementById('taskList').appendChild(listItem);
+
+            // Clear the input field
+            taskInput.value = '';
+        }
+    });
+</script>
+<footer>&COPY;Jessica Sharp</footer>
+</body>
+</html>
